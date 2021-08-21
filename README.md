@@ -1,3 +1,3 @@
-# PCI-Concursos Scraper
+# PCI BotScraper
 
 WIP
