@@ -2,3 +2,6 @@
 /output
 # vim swap file
 *.swp
+
+venv/
+*.egg-info/
