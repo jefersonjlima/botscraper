@@ -1,7 +1,7 @@
 ''' BotScraper packages '''
 
-from .core.Scraper import ETL
-from .scrapers.PCI import PCIContest
+from .core.scraper import ETL
+from .scrapers.pci import PCIContest
 
 
 

@@ -1,3 +1,1 @@
 ''' Scrapers Objects '''
-
-
