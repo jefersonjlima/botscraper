@@ -1,4 +1,4 @@
-.PHONY: help prepare-dev run_pci clean docker
+.PHONY: help prepare-dev run schedule_scraper clean docker
 
 VENV_NAME?=venv
 VENV_ACTIVATE=. $(VENV_NAME)/bin/activate
@@ -28,11 +28,28 @@ test: venv
 	${PYTHON} -m pytest -vv tests
 
 lint: venv
-	${PYTHON} -m pylint
-	${PYTHON} -m mypy --ignore-missing-imports botscraper
+	${PYTHON} -m pylint botscraper
 
-run_pci: venv
-	@${PYTHON} ./src/run_pci.py
+run: venv
+	@${PYTHON} ./src/main.py
+
+schedule_scraper:
+	@echo "Scraper was scheduled"
+		# * * * * * command to be executed
+		# - - - - -
+		# | | | | |
+		# | | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+		# | | | ------- Month (1 - 12)
+		# | | --------- Day of month (1 - 31)
+		# | ----------- Hour (0 - 23)
+		# ------------- Minute (0 - 59)
+	# #write out current crontab
+	@crontab -l > mycron
+	# #echo new cron into cron file
+	@echo "*/1 * * * * $(USER) python3 $(PWD)/src/main.py" >> mycron
+	# #install new cron file
+	@crontab mycron
+	@rm mycron
 
 clean:
 	@rm -rf $(VENV_NAME) *.eggs *.egg-info .cache .mypy_cache/ .pytest_cache/ *.log
