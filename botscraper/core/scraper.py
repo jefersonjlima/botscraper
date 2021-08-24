@@ -48,7 +48,7 @@ class ETL:
         format_str = '%d/%m/%Y'
         try:
             out = datetime.strptime(date_str, format_str)
-        except Exception as e:
+        except ValueError as e:
             print(f"Datetime error: {e}")
             out = datetime.fromtimestamp(0).strftime(format_str)
         return out
@@ -62,7 +62,7 @@ class ETL:
     def storage(self):
         try:
             self.df.to_csv('output/contest_out.csv', index=False)
-        except Exception as e:
+        except  IOError as e:
             print(f"Error to Storage: {e}")
 
     def run(self):
