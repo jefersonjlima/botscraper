@@ -28,7 +28,7 @@ test: venv
 	${PYTHON} -m pytest -vv tests
 
 lint: venv
-	${PYTHON} -m pylint botscraper
+	${PYTHON} -m pylint --rcfile=./config/pylintrc botscraper
 
 run: venv
 	@${PYTHON} ./src/main.py
