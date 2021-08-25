@@ -1,13 +1,13 @@
-# PCI BotScraper
+# Contest BotScraper
 
 [![Pylint](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml)
 [![Ubuntu](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml)
-![GitHub](https://img.shields.io/github/license/jefersonjlima/wbident)
+![GitHub](https://img.shields.io/github/license/jefersonjlima/pci_scraper)
 
 
 ## Overview
 
-BotScrapy is a web crawling, used to crawl brazilian contests websites and extract structured data from their pages.
+Contest BotScrapy is a web crawling, used to crawl Brazilian contests websites and extract structured data from their pages.
 
 Check the BotScrapy homepage at [BotScraper](http://github.io/jefersonjlima/pci_scraper) for more information, including a list of features.
 
@@ -27,14 +27,21 @@ $ cd pci_scraper && mkdir output
 $ make prepare-dev
 $ make run
 ```
-
+Schedule the web scraping:
 ```bash
 $ git clone https://github.com/jefersonjlima/pci_scraper.git
 $ cd pci_scraper && mkdir output
 $ make prepare-dev
-$ make run
+$ make schedule_scraper
 ```
+
+## Configuration
+
+
+
 ## Documentation
 
 Documentation is available online at [BotScraper](http://github.io/jefersonjlima/pci_scraper) and in the `docs` directory.
 
+
+## Contributing
