@@ -1,7 +1,7 @@
 # PCI BotScraper
 
 [![Pylint](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml)
-[![Ubuntu](https://github.com/jefersonjlima/pci_scraper/actions/workflows/ubuntu.yml/badge.svg](https://github.com/jefersonjlima/pci_scraper/actions/workflows/ubuntu.yml)
+[![Ubuntu](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml)
 ![GitHub](https://img.shields.io/github/license/jefersonjlima/wbident)
 
 
