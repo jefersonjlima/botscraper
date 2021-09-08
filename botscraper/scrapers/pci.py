@@ -34,7 +34,7 @@ class PCIContest(telegram.TBot):
     def check_keywords(self, url_list):
         c_keys, c_txt_body = [], []
         for url in url_list:
-            body_soup = self.extract_page_html(url)
+            _, body_soup = self.extract_page_html(url)
             txt_body = self.r_tags(body_soup.find("div", {"itemprop": "articleBody"})).lower()
             c_txt_body.append(txt_body)
             keys = ''
