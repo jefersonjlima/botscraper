@@ -19,4 +19,6 @@ jobs:
         make prepare-dev
     - name: Run Tests
       run: |
+        # generic hash
+        export TELEGRAM_TOKEN="871C09F54FB67A092B77C5E1B3DC3C89DA708A09"
         make test
