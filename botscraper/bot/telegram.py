@@ -87,7 +87,7 @@ class TBot(scraper.ETL):
                                      '*Keywords*: '+ contest['Keys'], parse_mode='Markdown')
 
     @staticmethod
-    def help(update: Update) -> None:
+    def help(update: Update, _) -> None:
         update.message.reply_text(
             '\U0001F916 * Command List* \U0001F916\n'
             '\U0001F4DA */help* to see all commands\n'
@@ -100,7 +100,7 @@ class TBot(scraper.ETL):
             '\U0001F4D1 */show* to show all filtered contests!\n',
             parse_mode='Markdown')
 
-    def get_keywords(self, update: Update) -> None:
+    def get_keywords(self, update: Update, _) -> None:
         keys = ', '.join(map(str, self.config.keywords))
         update.message.reply_text('\U0001F916 *The keywords are:* \n*' + keys + '*',
                                   parse_mode='Markdown')
@@ -156,7 +156,7 @@ class TBot(scraper.ETL):
         else:
             update.message.reply_text('\U0001F916 Please, type /unset <keyword>')
 
-    def start_etl(self, update: Update) -> None:
+    def start_etl(self, update: Update, _) -> None:
         update.message.reply_text('\U0001F916 Updating ...')
         self.run()
         update.message.reply_text('\U0001F916 Finished!')
