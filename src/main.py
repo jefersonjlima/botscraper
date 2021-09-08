@@ -5,7 +5,7 @@ if __name__ == "__main__":
 
     etl = PCIContest()
     try:
-        etl.run()
+        etl.go_idle()
     except Exception as e:
         print(e)
 
