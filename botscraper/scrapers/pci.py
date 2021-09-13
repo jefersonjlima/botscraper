@@ -26,7 +26,8 @@ class PCIContest(telegram.TBot):
             c_title.append(cnt.select('a')[0].get('title'))
             c_url.append(cnt.select('a')[0].get('href'))
         c_keys, c_txt_body = self.check_keywords(c_url)
-        self.df = self.df.iloc[0:0]
+        self.df.drop(self.df.index, inplace=True)
+        self.df.drop(self.df.columns, inplace=True, axis=1)
         self.df[self.config.fields] = list(zip(c_role, c_state, c_until,
                                                c_title, c_url, c_keys, c_txt_body))
         self.df.fillna('', inplace=True)
@@ -34,6 +35,7 @@ class PCIContest(telegram.TBot):
     def check_keywords(self, url_list):
         c_keys, c_txt_body = [], []
         for url in url_list:
+            self.logger.info("%s", url.split('/')[-1])
             _, body_soup = self.extract_page_html(url)
             txt_body = self.r_tags(body_soup.find("div", {"itemprop": "articleBody"})).lower()
             c_txt_body.append(txt_body)
