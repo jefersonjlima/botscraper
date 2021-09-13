@@ -25,9 +25,9 @@ class TBot(scraper.ETL):
         self.token = os.environ[self.cfg['TELEGRAM']['token']]
         self.config.alarm = self.cfg['TELEGRAM']['ETL_SCHEDULE'].split(',')
         self.clock = datetime.time(int(self.config.alarm[0]),
-                              int(self.config.alarm[1]),
-                              int(self.config.alarm[2]),
-                              int(self.config.alarm[3]))
+                                   int(self.config.alarm[1]),
+                                   int(self.config.alarm[2]),
+                                   int(self.config.alarm[3]))
         persistence = PicklePersistence(filename='output/conversationbot.pickle',
                                         store_callback_data=True)
         self.updater = Updater(self.token, persistence=persistence,
