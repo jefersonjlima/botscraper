@@ -18,11 +18,16 @@ class TBot(scraper.ETL):
 
     def __init__(self):
         super().__init__()
+        self.clock = None
         self.load_bot_cfg()
 
     def load_bot_cfg(self) -> None:
         self.token = os.environ[self.cfg['TELEGRAM']['token']]
         self.config.alarm = self.cfg['TELEGRAM']['ETL_SCHEDULE'].split(',')
+        self.clock = datetime.time(int(self.config.alarm[0]),
+                              int(self.config.alarm[1]),
+                              int(self.config.alarm[2]),
+                              int(self.config.alarm[3]))
         persistence = PicklePersistence(filename='output/conversationbot.pickle',
                                         store_callback_data=True)
         self.updater = Updater(self.token, persistence=persistence,
@@ -33,14 +38,10 @@ class TBot(scraper.ETL):
 
     def notify(self, update: Update, context: CallbackContext) -> None:
         chat_id = update.message.chat_id
-        clock = datetime.time(int(self.config.alarm[0]) + 3, # convert UTC
-                              int(self.config.alarm[1]),
-                              int(self.config.alarm[2]),
-                              int(self.config.alarm[3]))
         job_removed = self.remove_job_if_exists(str(chat_id), context)
 
         context.job_queue.run_daily(self.check_news,
-                                    clock, days=tuple(range(7)),
+                                    self.clock, days=tuple(range(7)),
                                     context=chat_id, name=str(chat_id))
         text = 'Notification was enabled!'
         if job_removed:
@@ -111,7 +112,7 @@ class TBot(scraper.ETL):
             s_df = self.last_df[self.last_df['TxtBody'].str.contains(key)]
             update.message.reply_text('Searching by ' + key)
         else:
-            s_df = self.last_df[s_df.Keys != '']
+            s_df = self.last_df[self.last_df.Keys != '']
             update.message.reply_text('Searching all')
         for cnt in s_df.iterrows():
             contest = dict(cnt[1])
@@ -156,10 +157,14 @@ class TBot(scraper.ETL):
         else:
             update.message.reply_text('\U0001F916 Please, type /unset <keyword>')
 
-    def start_etl(self, update: Update, _) -> None:
-        update.message.reply_text('\U0001F916 Updating ...')
-        self.run()
-        update.message.reply_text('\U0001F916 Finished!')
+    def update(self, update: Update, context: CallbackContext) -> None:
+        chat_id = update.message.chat_id
+        job_removed = self.remove_job_if_exists(str(chat_id), context)
+        context.job_queue.run_once(self.check_news, 5, context=chat_id, name=str(chat_id))
+        text = 'Update Now was enabled!'
+        if job_removed:
+            text += ' Old one was removed.'
+        update.message.reply_text("\U0001F916 " + text)
 
     def go_idle(self) -> None:
         dispatcher = self.updater.dispatcher
@@ -170,10 +175,9 @@ class TBot(scraper.ETL):
         dispatcher.add_handler(CommandHandler("keywords", self.get_keywords))
         dispatcher.add_handler(CommandHandler("set", self.add_key))
         dispatcher.add_handler(CommandHandler("unset", self.remove_key))
-        dispatcher.add_handler(CommandHandler("update", self.start_etl))
+        dispatcher.add_handler(CommandHandler("update", self.update))
         dispatcher.add_handler(CommandHandler("show", self.show_contest))
         dispatcher.add_handler(MessageHandler(
             Filters.text & ~Filters.command, self.help))
-
         self.updater.start_polling()
         self.updater.idle()
