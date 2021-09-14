@@ -3,6 +3,7 @@
 import os
 import datetime
 from telegram import Update
+from telegram.error import InvalidToken
 from telegram.ext import (
         Updater,
         CommandHandler,
@@ -22,7 +23,12 @@ class TBot(scraper.ETL):
         self.load_bot_cfg()
 
     def load_bot_cfg(self) -> None:
-        self.token = os.environ[self.cfg['TELEGRAM']['token']]
+        try:
+            self.token = os.environ['TELEGRAM_TOKEN']
+        except KeyError:
+            self.token = ''
+            self.logger.error('TELEGRAM_TOKEN is empty, please see the documentation '
+                              'on how to configure it')
         self.config.alarm = self.cfg['TELEGRAM']['ETL_SCHEDULE'].split(',')
         self.clock = datetime.time(int(self.config.alarm[0]),
                                    int(self.config.alarm[1]),
@@ -30,8 +36,13 @@ class TBot(scraper.ETL):
                                    int(self.config.alarm[3]))
         persistence = PicklePersistence(filename='output/conversationbot.pickle',
                                         store_callback_data=True)
-        self.updater = Updater(self.token, persistence=persistence,
-                               arbitrary_callback_data=True)
+        try:
+            self.updater = Updater(self.token, persistence=persistence,
+                                   arbitrary_callback_data=True)
+        except InvalidToken:
+            self.logger.error('Please add a valid Access Token!')
+            # pylint: disable=W0212
+            os._exit(1)
 
     def load_cfg(self) -> None:
         pass
