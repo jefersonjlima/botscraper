@@ -36,7 +36,7 @@ First of all, if you want to use the botscraper with telegram, you will need an 
 Edit the `config/configs.cfg` to change the configurations.
 For example, if you want to add or remove some keyword you need to change `GERAL.keywords` (you can do it by the telegram commands too). If you are looking for an internship, just change the `url_base` to `https://www.pciconcursos.com.br/estagios/`.
 
-In `TELEGRAM.etl_schedule` you define the UTC time to start the ETL.
+In `TELEGRAM.etl_schedule` you will define the UTC time to start the ETL.
 
 ## Commands
 * `/help`to see all commands.
