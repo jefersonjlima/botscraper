@@ -7,9 +7,9 @@
 
 ## Overview
 
-Contest BotScrapy is a web crawling, used to crawl Brazilian contests websites and extract structured data from their pages.
+The Contest BotScraper is a web crawling, used to crawl Brazilian contests websites and extract structured data from their pages.
 
-Check the BotScrapy homepage at [BotScraper](http://github.io/jefersonjlima/pci_scraper) for more information, including a list of features.
+Check the BotScraper homepage at [BotScraper](http://github.io/jefersonjlima/botScraper) for more information, including a list of features.
 
 ## Requirements
 
