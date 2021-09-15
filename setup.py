@@ -8,7 +8,7 @@ setup(
     name='botscraper',
     version='0.0.1',
     packages=['botscraper', 'botscraper.core', 'botscraper.scrapers'],
-    url='https://github.com/jefersonjlima/pci_scraper',
+    url='https://github.com/jefersonjlima/botscraper',
     license='MIT',
     author='Jeferson Lima',
     author_email='jefersonjl82@gmail.com',
