@@ -46,7 +46,7 @@ In `TELEGRAM.etl_schedule` you will define the UTC time to start the ETL.
 * `/non_notify` to disable notification.
 * `/keywords` to show all keywords.
 * `/show <keyword>` to list costests by keyword.
-* `/show to show all filtered contests.
+* `/show` to show all filtered contests.
 
 ## Documentation
 
