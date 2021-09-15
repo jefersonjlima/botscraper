@@ -1,15 +1,15 @@
 # Contest BotScraper
 
-[![Pylint](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/pylint.yml)
-[![Ubuntu](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml/badge.svg)](https://github.com/jefersonjlima/pci_scraper/actions/workflows/Ubuntu.yml)
-![GitHub](https://img.shields.io/github/license/jefersonjlima/pci_scraper)
+[![Pylint](https://github.com/jefersonjlima/botscraper/actions/workflows/pylint.yml/badge.svg)](https://github.com/jefersonjlima/botscraper/actions/workflows/pylint.yml)
+[![Ubuntu](https://github.com/jefersonjlima/botscraper/actions/workflows/Ubuntu.yml/badge.svg)](https://github.com/jefersonjlima/botscraper/actions/workflows/Ubuntu.yml)
+![GitHub](https://img.shields.io/github/license/jefersonjlima/botscraper)
 
 
 ## Overview
 
 The Contest BotScraper is a web crawling, used to crawl Brazilian contests websites and extract structured data from their pages.
 
-Check the BotScraper homepage at [BotScraper](http://github.io/jefersonjlima/botScraper) for more information, including a list of features.
+Check the BotScraper homepage at [BotScraper](http://github.io/jefersonjlima/botscraper) for more information, including a list of features.
 
 ## Requirements
 
