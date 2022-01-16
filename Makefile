@@ -13,7 +13,7 @@ help:
 	@echo "make docker"
 	@echo "       mount docker"
 prepare-dev:
-	sudo apt-get -y install python3 python3-pip
+#	sudo apt-get -y install python3 python3-pip
 	python3 -m pip install virtualenv
 	make venv
 
