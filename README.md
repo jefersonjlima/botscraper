@@ -23,7 +23,7 @@ The quick way:
 
 ```bash
 $ git clone https://github.com/jefersonjlima/botscraper.git
-$ cd botscraper && mkdir output
+$ cd botscraper
 $ echo 'export TELEGRAM_TOKEN="YOUR_ACCESS_TOKEN"' >> ~/.bashrc
 $ make prepare-dev
 $ make run
