@@ -128,7 +128,7 @@ class TBot(scraper.ETL):
         for cnt in s_df.iterrows():
             contest = dict(cnt[1])
             try:
-                str_date = datetime.datetime.strptime(contest['Until'], '%Y-%m-%d %H:%M:%S')
+                str_date = datetime.datetime.strptime(contest['Until'], '%Y-%m-%d')
                 str_date = str_date.strftime("%d/%m/%Y")
             except ValueError:
                 str_date = self.try_date('')
